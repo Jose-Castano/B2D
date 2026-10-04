@@ -7,9 +7,6 @@ namespace B2D
 Sprite::Sprite()
 {}
 
-Sprite::~Sprite()
-{}
-
 void Sprite::set_texture(Basic::Texture2D* new_texture)
 {
     if(new_texture == nullptr)

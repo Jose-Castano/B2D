@@ -10,6 +10,7 @@ bread_package(
     SOURCES
         "B2D/Animation/AnimationLibrary.cpp"
 
+        "B2D/AnimatedSprite.cpp"
         "B2D/Sprite.cpp"
 )
 

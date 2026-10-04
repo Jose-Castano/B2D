@@ -17,7 +17,6 @@ struct Sprite
     Color mod_color = Color(255, 255, 255, 255);
 
     Sprite();
-    ~Sprite();
 
     void set_texture(Basic::Texture2D* new_texture);
 
