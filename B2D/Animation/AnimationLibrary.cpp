@@ -4,32 +4,18 @@
 namespace B2D
 {
 
-void AnimationLibrary::Animation::add_frame(Collections::StringView id, Rect2D uv, f32 duration)
+AnimationLibrary::AnimationLibrary(Mem::Allocator& allocator)
+: allocator(allocator), animations(allocator, 4)
+{}
+
+Animation& AnimationLibrary::add_animation(Collections::StringView name)
 {
-    frames.emplace(id, uv, duration);
+    return animations.emplace(name, allocator);
 }
 
-void AnimationLibrary::Animation::add_frame_to_sequence(Collections::StringView frame)
+Animation& AnimationLibrary::get_animation(Collections::StringView name)
 {
-    (void)sequence.emplace(allocator, 0, frame);
-}
-
-AnimationLibrary::AnimationLibrary(Mem::Allocator& allocator, Basic::Texture2D* spritesheet)
-: data(allocator, spritesheet)
-{
-}
-
-AnimationLibrary::Animation& AnimationLibrary::add_animation(Collections::StringView name, bool loop)
-{
-    Animation& anim = data.animations.emplace(name, data.allocator);
-    anim.loop = loop;
-    return anim;
-}
-
-AnimationLibrary::Animation& AnimationLibrary::get_animation(Collections::StringView name)
-{
-    DebugAssert(data.animations.has(name), "animation doesn't exists!");
-    return data.animations.get(name);
+    return animations.get(name);   
 }
 
 }
